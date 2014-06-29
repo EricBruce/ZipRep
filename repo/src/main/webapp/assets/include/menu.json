@@ -1,0 +1,23 @@
+[{
+    "id":1,
+    "text":"库存管理",
+    "iconCls":"icon-add",
+    "children":[{
+        "text":"宝贝列表",
+        "checked":true
+    },{
+        "text":"新建宝贝",
+        "attributes":{
+            "url":"阿斯法",
+            "price":100
+        }
+    }]
+},{
+    "text":"用户管理",
+    "state":"closed",
+    "children":[{
+        "text":"角色"
+    },{
+        "text":"功能分配"
+    }]
+}]

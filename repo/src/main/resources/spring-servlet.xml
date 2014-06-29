@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+	<!-- 添加事务支持 -->
+	 <tx:annotation-driven transaction-manager="transactionManager"
+			proxy-target-class="true" />
+	<!-- 启用spring mvc 注解 -->
+	<context:annotation-config />
+	 <!-- 对静态资源文件的访问 -->    
+	 <!-- <mvc:resources mapping="/assets/**" location="/assets/" /> --> 
+	 <mvc:default-servlet-handler/>
+	  <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean --> 
+	 <context:component-scan base-package="yxs.snake.str"></context:component-scan>
+	  <!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射--> 
+	 <mvc:annotation-driven/>
+	  <!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->  
+	 <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	<property name="prefix" value="/"></property>
+	 	<property name="suffix" value=".jsp"></property>
+	 	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+	 </bean> -->
+	 
+	  <!-- SpringMVC上传文件时,需配置MultipartResolver处理器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 指定所上传文件的总大小不能超过800KB......注意maxUploadSize属性的限制不是针对单个文件,而是所有文件的容量之和 -->
+        <property name="maxUploadSize" value="800000"/>
+    </bean>
+	 
+	 <!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"
+		id="contentNegotiatingViewResolver">
+
+		<!-- 设置为true以忽略对Accept Header的支持 -->
+		<property name="ignoreAcceptHeader" value="false" />
+
+		<!-- 用于开启 /user/123?format=json 的支持 -->
+		<!-- 用于开启 /user/123?format=xml 的支持 -->
+		<!-- 用于开启 /user/123?format=html 的支持 -->
+		<property name="favorParameter" value="false" />
+
+		<!-- true，开启扩展名支持，false关闭支持 -->
+		<property name="favorPathExtension" value="true" />
+
+		<!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
+		<!-- 扩展名至mimeType的映射,即 /user.xml => application/xml -->
+		<!-- 暂时只支持json和xml -->
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<!-- <entry key="xml" value="application/xml" /> -->
+			</map>
+		</property>
+
+		<!-- 在没有扩展名时即: "/user/1" 时的默认展现形式 -->
+		<property name="defaultContentType" value="text/html" />
+		<property name="defaultViews">
+			<list>
+				<!-- json视图 -->
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+				<!-- xml视图，XStreamMarshaller，可以转换任何形式的java对象 
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<constructor-arg>
+						<bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+							<property name="autodetectAnnotations" value="true" />
+						</bean>
+					</constructor-arg>
+				</bean> -->
+			</list>
+		</property>
+		<!-- JSTL视图 -->
+		<property name="viewResolvers">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/" />
+					<property name="suffix" value=".jsp" />
+					<property name="viewClass"
+						value="org.springframework.web.servlet.view.JstlView" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

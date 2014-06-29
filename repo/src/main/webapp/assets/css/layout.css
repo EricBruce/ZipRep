@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+.mytable tr td{
+	border-color: blue;
+	border-width: 1px;
+}
+
+.roundcorner{
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+}
