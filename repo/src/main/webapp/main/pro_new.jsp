@@ -7,13 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新建宝贝</title>
 </head>
-<body style="background-color: rgb(17, 63, 52);">
-	<div class="roundcorner" style="background-color: lightslategrey;padding: 10px;padding-left: 10%;">
+<body>
+	<div class="roundcorner" style="padding: 10px;padding-left: 10%;">
 		<p align="center" style="font-weight: bolder;">宝贝基本信息</p>
 		<table style="border-spacing: 20px;">
 			<tr>
 				<td align="right">
-					<span style="font-weight: bolder; color: red;">*</span>宝贝名称:
+					<span style="font-weight: bolder; color: red;">*</span>商品名称:
 				</td>
 				<td align="left">
 					<input name="productName" type="text" size="100"> 
@@ -23,12 +23,29 @@
 				</td>
 			</tr>
 			<tr>
+				<td align="right">商品编码：</td>
+				<td align="left"><input name="productNo" type="text"></td>
+			</tr>
+			<tr>
 				<td align="right">
 					<span style="font-weight: bolder; color: red;">*</span>
 					一口价：
 				</td>
 				<td> 
 					<input name="productPrice" type="text">元
+				</td>
+			</tr>
+			<tr>
+				<td align="right">报警值：</td>
+				<td align="left"><input name="productAlarm" type="text"></td>
+			</tr>
+			<tr>
+				<td align="right">
+					<span style="font-weight: bolder; color: red;">*</span>
+					宝贝数量：
+				</td>
+				<td align="left">
+					<input name="amount" type="text" readonly="readonly">件
 				</td>
 			</tr>
 			<tr>
@@ -72,23 +89,6 @@
 					</div>
 					</div>
 				</td>
-			</tr>
-			<tr>
-				<td align="right">
-					<span style="font-weight: bolder; color: red;">*</span>
-					宝贝数量：
-				</td>
-				<td align="left">
-					<input name="amount" type="text" readonly="readonly">件
-				</td>
-			</tr>
-			<tr>
-				<td align="right">报警值：</td>
-				<td align="left"><input name="productAlarm" type="text"></td>
-			</tr>
-			<tr>
-				<td align="right">商品编码：</td>
-				<td align="left"><input name="productNo" type="text"></td>
 			</tr>
 			<tr>
 				<td align="right" style="vertical-align: top;">宝贝图片:</td>

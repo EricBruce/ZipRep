@@ -14,7 +14,7 @@ $(function(){
 		/* method:'GET',
 		url:'${ctx}/assets/include/menu.json', */
 		onClick: function(node){
-			parent.main.location.replace(node.attributes.url);
+			parent.main.src = node.attributes.url;
 		}
 	});
 });
