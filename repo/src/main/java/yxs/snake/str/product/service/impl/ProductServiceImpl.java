@@ -1,6 +1,5 @@
-package yxs.snake.str.service;
+package yxs.snake.str.product.service.impl;
 
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +13,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import yxs.snake.str.dao.ProductDao;
+import yxs.snake.str.product.dao.ProductDao;
+import yxs.snake.str.product.service.ProductService;
 import yxs.snake.str.util.Contants;
 import yxs.snake.str.util.SqlParamHandler;
 import yxs.snake.str.util.UUIDGenerator;
@@ -23,9 +23,9 @@ import yxs.snake.str.util.UUIDGenerator;
  * @author Eric
  *
  */
-@Service
+@Service("productService")
 @Transactional
-public class ProductService {
+public class ProductServiceImpl implements ProductService {
 	@Resource
 	ProductDao productDao;
 	@Resource
@@ -213,19 +213,21 @@ public class ProductService {
 		return count;
 	}
 	
-	/**获取所有宝贝库存销量列表
-	 * @param condition
-	 * @return
-	 */
+    /**
+     * 获取所有宝贝库存销量列表
+     * @param productID
+     * @return
+     */
 	public List<Map<String,Object>> getProductsellAmount(String productID) {
 		List<Map<String,Object>> list = productDao.getAllSellProductAmount(productID);
 		return list;
 	}
 	
-	/**获取所有宝贝库存销量记录数
-	 * @param condition
-	 * @return
-	 */
+    /**
+     * 获取所有宝贝库存销量记录数
+     * @param productID
+     * @return
+     */
 	public int getProductsellAmountCount(String productID) {
 		int count = productDao.getAllSellProductAmountCount(productID);
 		return count;

@@ -1,10 +1,9 @@
-package yxs.snake.str.dao;
+package yxs.snake.str.product.dao;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import yxs.snake.str.util.Contants;
 import yxs.snake.str.util.SqlParser;
 import yxs.snake.str.util.UUIDGenerator;
 
