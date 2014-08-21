@@ -1,5 +1,6 @@
 package com.yxs.eric.craft.account.service;
 
+import com.yxs.eric.craft.account.model.Role;
 import com.yxs.eric.craft.account.model.User;
 
 import java.util.List;
@@ -39,27 +40,29 @@ public interface UserService {
     /**
      * add a user
      *
+     * @param createBy
      * @param user
      * @return
      */
-    public int addUser(User user);
+    public int addUser(String createBy, User user);
 
     /**
      * edit a user
-     *
+     * @param modifyBy
      * @param userId
      * @param user
      * @return
      */
-    public int editUser(int userId, User user);
+    public int editUser(String modifyBy, int userId, User user);
 
     /**
      * delete a user
      *
+     * @param deleteBy
      * @param userId
      * @return
      */
-    public int deleteUser(int userId);
+    public int deleteUser(String deleteBy, int userId);
 
     /**
      * set user role with the roleId if there is a roleId for user then replace it
@@ -69,5 +72,20 @@ public interface UserService {
      * @return
      */
     public int setUserRole(int userId, int roleId);
+
+    /**
+     * get role of user(${userId}) if there is no role then return null
+     *
+     * @param userId
+     * @return
+     */
+    public Role getUserRole(int userId);
+
+    /**
+     * delete user role
+     * @param userId
+     * @return
+     */
+    public int deleteUserRole(int userId);
 
 }

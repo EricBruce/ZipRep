@@ -1,5 +1,6 @@
 package com.yxs.eric.craft.account.service;
 
+import com.google.common.collect.Multimap;
 import com.yxs.eric.craft.account.model.Menu;
 
 import java.util.List;
@@ -10,12 +11,27 @@ import java.util.List;
 public interface MenuService {
 
     /**
+     * get a menu of ${menuId}
+     *
+     * @param menuId
+     * @return
+     */
+    public Menu getMenu(int menuId);
+
+    /**
+     * get menus
+     *
+     * @return
+     */
+    public Multimap<Menu, Menu> getMenus();
+
+    /**
      * get menus for role of ${roleId}
      *
      * @param roleId
      * @return
      */
-    public List<Menu> getMenus(int roleId);
+    public Multimap<Menu,Menu> getMenusForRole(int roleId);
 
     /**
      * get menus for user of ${userId}

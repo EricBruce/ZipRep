@@ -1,5 +1,7 @@
 package com.yxs.eric.craft.account.model;
 
+import java.util.Date;
+
 /**
  * Created by popo on 14-8-14.
  */
@@ -9,6 +11,7 @@ public class User {
     private String userName;
     private String displayName;
     private String password;
+    private Date createAt;
 
     public int getId() {
         return id;
@@ -41,4 +44,31 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
+    public Date getModifyAt() {
+        return modifyAt;
+    }
+
+    public void setModifyAt(Date modifyAt) {
+        this.modifyAt = modifyAt;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    private Date modifyAt;
+    private String createBy;
 }

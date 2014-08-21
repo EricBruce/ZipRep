@@ -67,5 +67,5 @@ public interface RoleService {
      * @param permissionIds
      * @return
      */
-    public int setRolePermission(int roleId, int[] permissionIds);
+    public boolean setRolePermission(int roleId, int[] permissionIds);
 }

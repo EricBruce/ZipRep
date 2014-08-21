@@ -7,6 +7,8 @@ public class Permission {
     private int id;
     private String name;
     private String value;
+    private int menuId;
+    private boolean isMenu;
 
     public int getId() {
         return id;
@@ -30,5 +32,21 @@ public class Permission {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
+    }
+
+    public boolean isMenu() {
+        return isMenu;
+    }
+
+    public void setMenu(boolean isMenu) {
+        this.isMenu = isMenu;
     }
 }
