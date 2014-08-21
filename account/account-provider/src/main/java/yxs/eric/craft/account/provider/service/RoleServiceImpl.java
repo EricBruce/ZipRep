@@ -48,8 +48,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public int setRolePermission(int roleId, int[] permissionIds) {
-        // TODO set role permission
-        return 0;
+    public boolean setRolePermission(int roleId, int[] permissionIds) {
+        boolean bSucc = true;
+        try {
+            roleDao.setRolePermissions(roleId, permissionIds);
+        } catch (Exception e) {
+            bSucc = false;
+        }
+        return bSucc;
     }
 }

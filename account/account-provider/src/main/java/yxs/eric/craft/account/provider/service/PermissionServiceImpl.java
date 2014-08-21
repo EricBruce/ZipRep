@@ -3,7 +3,9 @@ package yxs.eric.craft.account.provider.service;
 import com.yxs.eric.craft.account.model.Permission;
 import com.yxs.eric.craft.account.service.PermissionService;
 import org.springframework.stereotype.Service;
+import yxs.eric.craft.account.provider.dao.PermissionDao;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -11,9 +13,14 @@ import java.util.List;
  */
 @Service("permissionService")
 public class PermissionServiceImpl implements PermissionService {
+    @Resource
+    PermissionDao permissionDao;
+
     @Override
     public List<Permission> getPermissions(int roleId) {
-
-        return null;
+        List<Permission> pList = permissionDao.queryPermission(roleId);
+        return pList;
     }
+
+
 }

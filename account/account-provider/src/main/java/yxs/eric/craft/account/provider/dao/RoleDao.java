@@ -1,6 +1,7 @@
 package yxs.eric.craft.account.provider.dao;
 
 import com.yxs.eric.craft.account.model.Role;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -116,5 +119,23 @@ public class RoleDao {
         sql.append("update s_role set `name`=:name, `desc`=:desc where id=" + roleId);
         int rows = jdbcTemplate.update(sql.toString(), new BeanPropertySqlParameterSource(role));
         return rows;
+    }
+
+    public void setRolePermissions(int roleId, int[] permissionIds) {
+        final String sql = "insert into r_role_permission(role_id,permission_id)" +
+                "values(?,?)";
+
+        int[] rows = jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                ps.setInt(1, roleId);
+                ps.setInt(2, permissionIds[i]);
+            }
+
+            @Override
+            public int getBatchSize() {
+                return permissionIds.length;
+            }
+        });
     }
 }
